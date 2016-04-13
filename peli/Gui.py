@@ -15,6 +15,8 @@ class Gui():
         self.play_animation = False
         
         self.root = tk.Tk()
+        self.root.geometry("800x600")
+        self.root.resizable(0, 0)
         self.root.title("Noppapeli")
         self.create_widgets()
         self.update()
