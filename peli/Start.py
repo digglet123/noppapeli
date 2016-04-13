@@ -3,8 +3,9 @@ Created on Apr 13, 2016
 
 @author: mikko
 '''
-from peli.Logic import Logic
-from peli.Gui import Gui
+
+from Logic import Logic
+from Gui import Gui
 
 def main():
     game = Logic()
