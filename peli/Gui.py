@@ -3,6 +3,7 @@ Created on Apr 10, 2016
 
 @author: mikko
 '''
+# -*- coding: utf-8 -*-
 import tkinter as tk
 import tkinter.messagebox
 
