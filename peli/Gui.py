@@ -107,6 +107,7 @@ class Gui():
     
     #Method for handling cast dice button events 
     def call_command(self):
+        self.input_text.delete(2, "end") 
         self.disable_ui()
         self.game.cast_dice()
         self.play_animation = True
