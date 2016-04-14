@@ -1,9 +1,9 @@
+# coding=UTF-8
 '''
 Created on Apr 10, 2016
 
 @author: mikko
 '''
-# -*- coding: utf-8 -*-
 import tkinter as tk
 import tkinter.messagebox
 
@@ -25,7 +25,7 @@ class Gui():
         
     
     def create_widgets(self):
-        #Menubar
+        #Create Menubar
         self.menubar = tk.Menu(self.root)
         self.menubar.add_command(label="Poistu", command=self.root.quit)
         self.menubar.add_command(label="Ohje", command=self.show_help)
@@ -33,7 +33,7 @@ class Gui():
         self.root.config(menu=self.menubar)
         self.root.configure(bg = "#a3a3a3")
         
-        #Frame objects to contain all other widgets
+        #Create Frame-objects to contain all other widgets
         self.top_frame = tk.Frame(self.root, bg = "#a3a3a3")
         self.top_frame.pack()
         
@@ -43,7 +43,7 @@ class Gui():
         self.bottom_frame = tk.Frame(self.root, bg = "#a3a3a3")
         self.bottom_frame.pack()
         
-        #top_frame widgets
+        #Top frame widgets
         self.text_label = tk.Label(self.top_frame, pady = 50, padx = 10, font = ("Helvetica", 20), fg = "blue", text = "Arvauksesi:", bg = "#a3a3a3")
         self.text_label.pack(side = "left")
         
@@ -55,44 +55,47 @@ class Gui():
         self.input_text = tk.Entry(self.top_frame, width = 3, font = ("Helvetica", 20))
         self.input_text.pack(side = "right")
         
-        #create a PhotoImage object for every frame in a gif file
+        #Create a PhotoImage-object for every frame in the gif file
         self.sequence_array = []
         for i in range (0,25):
             self.sequence_array.append(tk.PhotoImage(file = "dice_roll.gif", format = "gif -index %i" %i))
         
-        #create PhotoImage objects for dice stills
+        #Create PhotoImage-objects for still images
         self.still_array = []
         for i in range (1,7):
             self.still_array.append(tk.PhotoImage(file = "dice_%i.png" %i))
         
-        #middleFrame widgets
+        #Middle frame widgets
         self.dice_l = tk.Label(self.frame, image = self.sequence_array[0], bg = "#a3a3a3")
         self.dice_l.pack(side = "left")
         
         self.dice_r = tk.Label(self.frame, image = self.sequence_array[0], bg = "#a3a3a3")
         self.dice_r.pack(side = "right")
         
-        #bottom_frame widgets
+        #Bottom frame widgets
         self.cast_button = tk.Button(self.bottom_frame, text = "Heitä nopat", font = ("Helvetica", 20), fg = "blue", command = self.call_command)
         self.cast_button.pack(side = "top")
         
-        #Call info windows
+        #Pop up information windows
         self.root.after(500, self.show_help)
         
         
-        
+    #Method for checking if the random generator was initialized correctly    
     def check_dice_init(self):
         if(not self.game.init_success):
             tkinter.messagebox.showwarning("Virhe", "Järjestelmän aikaan perustuva nopan alustaminen epäonnistui.\nSiirrytään käyttämään vakio-arvoa")
     
+    #Method for showing help pop up window
     def show_help(self):
         tkinter.messagebox.showinfo("info", "Yritä arvata noppien silmälukujen yhteenlaskettu tulos ja heitä nopat.")
         self.check_dice_init() 
     
+    #Method for retrieving text from the input field
     def retrieve_input(self):
         retrieved = self.input_text.get()
         return retrieved
-     
+    
+    #Method for showing right message after dices have been cast 
     def show_message(self):
         result = self.game.add_result()
         resultString = "Tulos oli %i. " % result

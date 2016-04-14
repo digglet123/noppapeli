@@ -1,12 +1,13 @@
+# coding=UTF-8
 '''
 Created on Apr 13, 2016
 
 @author: mikko
 '''
-# -*- coding: utf-8 -*-
 from Logic import Logic
 from Gui import Gui
 
+#Creates game logic and starts game
 def main():
     game = Logic()
     Gui(game)

@@ -1,3 +1,3 @@
 # noppapeli
 
-Run "python Start.py" in commandline to launch app
+Run "python Start.py" inside peli-folder to launch the game. Works with Python 3.x.x.
