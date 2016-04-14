@@ -99,8 +99,10 @@ class Gui():
         resultString = "Tulos oli %i. " % result
         if(self.game.check_guess()):
             tkinter.messagebox.showinfo("info", resultString + "Arvauksesi oli OIKEIN!")
-        else:
+        elif(self.game.guess >= 2 and self.game.guess <= 12):
             tkinter.messagebox.showinfo("info",  resultString + "Arvauksesi oli VÄÄRIN.")
+        else:
+            tkinter.messagebox.showinfo("info",  resultString + "Arvauksesi oli VÄÄRIN.\nOn sallittua arvata myös väliltä 2-12")
         self.enable_ui()
         self.play_animation = False
         self.anim_frame = 1
