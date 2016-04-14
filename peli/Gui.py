@@ -23,7 +23,6 @@ class Gui():
         self.update()
         self.root.mainloop()
         
-    
     def create_widgets(self):
         #Create Menubar
         self.menubar = tk.Menu(self.root)
@@ -52,7 +51,7 @@ class Gui():
         self.indicator = tk.Label(self.top_frame, image = self.error_img, bg = "#a3a3a3")
         self.indicator.pack(side = "right")
         
-        self.input_text = tk.Entry(self.top_frame, width = 3, font = ("Helvetica", 20))
+        self.input_text = tk.Entry(self.top_frame, width = 2, font = ("Helvetica", 20))
         self.input_text.pack(side = "right")
         
         #Create a PhotoImage-object for every frame in the gif file
@@ -78,8 +77,7 @@ class Gui():
         
         #Pop up information windows
         self.root.after(500, self.show_help)
-        
-        
+            
     #Method for checking if the random generator was initialized correctly    
     def check_dice_init(self):
         if(not self.game.init_success):
@@ -139,13 +137,14 @@ class Gui():
             dice_right_value = self.game.results[1]
             self.dice_l.configure(image = self.still_array[dice_left_value - 1])
             self.dice_r.configure(image = self.still_array[dice_right_value - 1])
-            
-        
-                           
+                               
     def update(self):
         #Update current gif animation frame and set it visible
         if(self.play_animation):
             self.animate()  
+        
+        #Delete excess characters
+        self.input_text.delete(2, "end") 
         
         #Try to set input field value as guess and give indication symbol to user
         if(not self.ui_lock):
@@ -157,5 +156,4 @@ class Gui():
                 self.cast_button.configure(state = "disabled")
                 self.indicator.configure(image = self.error_img)
             
-        
         self.root.after(40, self.update)
